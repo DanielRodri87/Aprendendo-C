@@ -22,32 +22,37 @@ int main(void){
             printf("=================== CADASTRO DE CLIENTE ===================\n");
             printf("==========================================================\n");
 
-            printf("Digite seu nome: ");
-            printf("Digite seu número de conta: ");
-            printf("Digite sua agência: ");
-            printf("Digite seu saldo: ");
-            printf("Digite sua senha: ");
+            printf("Digite seu nome:\n");
             scanf("%s", &nome);
+            printf("Digite seu número de conta:\n ");
             scanf("%d", &num);
+            printf("Digite sua agência:\n ");
             scanf("%d", &agencia);
+            printf("Digite seu saldo:\n ");
             scanf("%d", &saldo);
-            scanf("%d", &senha);
-            printf("==========================================================");
-
-            break;
         }
         else if (opcao == 2){
             printf("==========================================================\n");
-            printf("=================== LOGIN DE CLIENTE =====================\n");
+            printf("=================== LOGIN DE CLIENTE %d =====================\n", agencia);
             printf("==========================================================\n");
 
-            printf("Digite seu número de conta: ");
-            scanf("%d", &num);
-            printf("Digite sua agência: ");
-            scanf("%d", &agencia);
-            printf("Digite sua senha: ");
-            scanf("%d", &senha);
+            int agencialogin;
+
+            printf("Digite sua agencia:\n");
+            scanf("%d", &agencialogin);
             printf("==========================================================");
+
+            // realizar login
+            if (agencialogin == agencia){
+                printf("==========================================================\n");
+                printf("=================== LOGIN REALIZADO COM SUCESSO =====================\n");
+                printf("==========================================================\n");
+            }
+            else{
+                printf("==========================================================\n");
+                printf("=================== LOGIN NÃO REALIZADO =====================\n");
+                printf("==========================================================\n");
+            }
 
             break;
         }
