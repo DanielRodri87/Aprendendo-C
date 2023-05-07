@@ -57,8 +57,7 @@ int main() {
         }
     }
 
-    // Criptografia 3:
- 
+    // Criptografia 3: Na terceira e última passada, todo e qualquer caractere a partir da metade em diante (truncada) devem ser deslocados uma posição para a esquerda na tabela ASCII. Neste caso, 'b' vira 'a' e 'a' vira '`'. E mostrar o resultado final
     for (r = 0; r < n; r++){
         scanf(" %[^\n]s", frase);
         for (s = 0; s < 1000; s++){
@@ -82,6 +81,6 @@ int main() {
         }
     }
 
-    printf("%s\n", frase);
+
     return 0;
 }
