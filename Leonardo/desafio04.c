@@ -13,7 +13,7 @@ int main(){
 
     consumo_medio = (km_final - km_inicial) / combustivel_gasto;
 
-    printf("Seu carro faz %.3f km/l\n", consumo_medio);
+    printf("Seu carro faz %.2f km/l\n", consumo_medio);
 
     return 0;
 }
