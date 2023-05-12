@@ -1,9 +1,3 @@
-//Fórmula de Bhaskara
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
 main ()
 {
   	 // Definindo cores
@@ -18,7 +12,7 @@ main ()
 	 scanf("%lf", &c);
 	 
 	 // fazendo o processamento da fórmula de bhaskara em si.... 
-	 delta = (b*b) - (4*a*c);  // poderia ter usado também o pow para elevar o b .... "  pow(b,2) "
+	 delta = (b*b) - (4*a*c);  
 	 r1 = ( (-b) + (sqrt(delta)) ) / (2*a);
 	 r2 = ( (-b) - (sqrt(delta)) ) / (2*a);
 	 
@@ -33,7 +27,5 @@ main ()
 		  printf("R1 = %.5lf\n", r1);
 		  printf("R2 = %.5lf\n", r2);
 	 }
-	
-	// pausando o sistema sem aparecer a mensagem "Pressione qualquer tecla para continuar..."
-	getche ();
-}
+
+
