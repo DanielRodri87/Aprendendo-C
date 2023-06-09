@@ -36,10 +36,15 @@ int main(){
         quantidade--;
     }
 
-    mediaPar = somaPar / pares;
-    mediaImpar = somaImpar / impares;
-    porcentagemPar = (pares * 100) / (pares + impares);
-    porcentagemImpar = (impares * 100) / (pares + impares);
+    if (pares > 0){
+        mediaPar = somaPar / pares;
+        porcentagemPar = (pares * 100) / (pares + impares);
+    }
+    if (impares > 0){
+        mediaImpar = somaImpar / impares;
+        porcentagemImpar = (impares * 100) / (pares + impares);
+    }
+
 
     printf("Quantidade de pares: %d\n", pares);
     printf("Quantidade de ímpares: %d\n", impares);
