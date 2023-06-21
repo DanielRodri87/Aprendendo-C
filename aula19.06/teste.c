@@ -8,24 +8,8 @@ void swap(int* a, int* b) {
     *b = temp;
 }
 
-int getPivotIndex(int arr[], int low, int high) {
-    int mid = (low + high) / 2;
-    
-    if (arr[low] > arr[mid])
-        swap(&arr[low], &arr[mid]);
-
-    if (arr[low] > arr[high])
-        swap(&arr[low], &arr[high]);
-
-    if (arr[mid] > arr[high])
-        swap(&arr[mid], &arr[high]);
-
-    return mid;
-}
-
 int partition(int arr[], int low, int high) {
-    int pivotIndex = getPivotIndex(arr, low, high);
-    int pivot = arr[pivotIndex];
+    int pivot = arr[high];
     int i = low - 1;
 
     for (int j = low; j <= high - 1; j++) {

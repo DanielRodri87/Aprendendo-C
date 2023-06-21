@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int tamanhoAmostra;
+    double desvioPadrao, margemErro;
+
+    // Solicitar ao usuário o tamanho da amostra e o desvio-padrão
+    printf("Digite o tamanho da amostra: ");
+    scanf("%d", &tamanhoAmostra);
+
+    printf("Digite o desvio-padrao: ");
+    scanf("%lf", &desvioPadrao);
+
+    // Calcular a margem de erro
+    margemErro = 1.96 * (desvioPadrao / sqrt(tamanhoAmostra));
+
+    // Exibir a margem de erro calculada
+    printf("A margem de erro e: %lf\n", margemErro);
+
+    return 0;
+}
