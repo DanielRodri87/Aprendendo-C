@@ -4,18 +4,18 @@ int main(){
 
     int idade, i, somaidades, qtd;
     printf("Quantas idades você quer inserir? ");
-    scanf("%d", i);
+    scanf("%d", &i);
 
     qtd = i;
 
     for (i; i > 0; i--){
         printf("Digite a  Idade: ");
-        scanf("%d", idade);
+        scanf("%d", &idade);
 
         somaidades+=idade;
     }
 
-    printf("A média de idades é: ", somaidades/qtd);
+    printf("A média de idades é: %d ", somaidades/qtd);
 
     return 0;
 }
