@@ -54,33 +54,18 @@ void mergeSort(int arr[], int size) {
     free(right);
 }
 
-// Função para realizar a partição do vetor (QuickSort)
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
-
-    for (int j = low; j <= high - 1; j++) {
-        if (arr[j] < pivot) {
-            i++;
+// Função para realizar a partição do vetor (ShellSort)
+void shellSort(int arr[], int size) {
+    for (int gap = size / 2; gap > 0; gap /= 2) {
+        for (int i = gap; i < size; i++) {
             int temp = arr[i];
-            arr[i] = arr[j];
+            int j;
+
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+                arr[j] = arr[j - gap];
+
             arr[j] = temp;
         }
-    }
-
-    int temp = arr[i + 1];
-    arr[i + 1] = arr[high];
-    arr[high] = temp;
-
-    return (i + 1);
-}
-
-// Função recursiva para ordenar o vetor (QuickSort)
-void quickSort(int arr[], int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
     }
 }
 
@@ -126,15 +111,20 @@ int main() {
 
     // Alocando memória para o vetor de sorteio
     int* numbers_merge = (int*)malloc(size * sizeof(int));
-    int* numbers_quick = (int*)malloc(size * sizeof(int));
+    int* numbers_shell = (int*)malloc(size * sizeof(int));
     int* numbers_heap = (int*)malloc(size * sizeof(int));
+
+    // Variáveis para acumular os tempos
+    double total_time_merge = 0.0;
+    double total_time_shell = 0.0;
+    double total_time_heap = 0.0;
 
     // Executando os algoritmos 30 vezes
     for (int i = 0; i < 30; i++) {
         // Realizando os sorteios
         for (int j = 0; j < size; j++) {
             numbers_merge[j] = rand() % 100 + 1;
-            numbers_quick[j] = numbers_merge[j];
+            numbers_shell[j] = numbers_merge[j];
             numbers_heap[j] = numbers_merge[j];
         }
 
@@ -143,30 +133,44 @@ int main() {
         mergeSort(numbers_merge, size);
         clock_t end_merge = clock();
         double time_spent_merge = (double)(end_merge - start_merge) / CLOCKS_PER_SEC;
+        total_time_merge += time_spent_merge;
 
-        // Medindo o tempo de execução para o QuickSort
-        clock_t start_quick = clock();
-        quickSort(numbers_quick, 0, size - 1);
-        clock_t end_quick = clock();
-        double time_spent_quick = (double)(end_quick - start_quick) / CLOCKS_PER_SEC;
+        // Medindo o tempo de execução para o ShellSort
+        clock_t start_shell = clock();
+        shellSort(numbers_shell, size);
+        clock_t end_shell = clock();
+        double time_spent_shell = (double)(end_shell - start_shell) / CLOCKS_PER_SEC;
+        total_time_shell += time_spent_shell;
 
         // Medindo o tempo de execução para o Heap Sort
         clock_t start_heap = clock();
         heapSort(numbers_heap, size);
         clock_t end_heap = clock();
         double time_spent_heap = (double)(end_heap - start_heap) / CLOCKS_PER_SEC;
+        total_time_heap += time_spent_heap;
 
         // Exibindo os tempos de execução
         printf("Execução %d:\n", i + 1);
         printf("Tempo Merge Sort: %.6f segundos\n", time_spent_merge);
-        printf("Tempo QuickSort: %.6f segundos\n", time_spent_quick);
+        printf("Tempo ShellSort: %.6f segundos\n", time_spent_shell);
         printf("Tempo Heap Sort: %.6f segundos\n", time_spent_heap);
         printf("\n");
     }
 
+    // Calculando as médias
+    double average_time_merge = total_time_merge / 30;
+    double average_time_shell = total_time_shell / 30;
+    double average_time_heap = total_time_heap / 30;
+
+    // Exibindo as médias
+    printf("Média dos tempos:\n");
+    printf("Média Merge Sort: %.6f segundos\n", average_time_merge);
+    printf("Média ShellSort: %.6f segundos\n", average_time_shell);
+    printf("Média Heap Sort: %.6f segundos\n", average_time_heap);
+
     // Liberando a memória alocada
     free(numbers_merge);
-    free(numbers_quick);
+    free(numbers_shell);
     free(numbers_heap);
 
     return 0;
