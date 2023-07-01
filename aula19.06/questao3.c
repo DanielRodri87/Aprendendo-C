@@ -11,8 +11,8 @@ int main() {
     int qAprovados = 0, qReprovados = 0;
 
     while (i < quantidade_alunos) {
-        printf("Digite as notas do aluno %d:\n", i  + 1);
-        
+        printf("Digite as notas do aluno %d:\n", i + 1);
+
         int j = 0;
         float soma_notas = 0;
         while (j < 3) {
@@ -22,7 +22,7 @@ int main() {
             soma_notas += nota;
             j++;
         }
-        
+
         media = soma_notas / 3;
 
         if (media > maior_media) {
@@ -38,9 +38,10 @@ int main() {
             qReprovados++;
         }
 
+        printf("Média do aluno %d: %.2f\n", i + 1, media);
+
         i++;
     }
-
 
     printf("A maior média foi: %.2f\n", maior_media);
     printf("A menor média foi: %.2f\n", menor_media);
