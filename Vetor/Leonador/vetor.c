@@ -32,5 +32,27 @@ int ex1(){
 // Estrutura homogênia
 // Alocação sequencial
 
+// A definição de um vetor é feita da seguinte forma:
+//  tipo nome[tamanho];
+// Dada uma sequência de n número imprima-la na ordem inversa.
+
+#include <stdio.h>
+
+int main(){
+    int i;
+
+    int vetor[10];
+
+    for(i = 0; i < 10; i++){
+        printf("Digite o %d numero: ", i+1);
+        scanf("%d", &vetor[i]);
+    }
+
+    for(i = 9; i >= 0; i--){
+        printf("%d\n", vetor[i]);
+    }
+
+    return 0;
+}
 
 
