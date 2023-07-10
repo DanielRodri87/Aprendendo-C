@@ -28,9 +28,11 @@ int ex1(){
 }
 
 // Algumas caracteristicas do tipo vetor vetor([10]);
-// Alocação estática
-// Estrutura homogênia
-// Alocação sequencial
+
+// Alocação estática; 
+// Estrutura homogênia; 
+
+// Alocação sequencial; 
 
 // A definição de um vetor é feita da seguinte forma:
 //  tipo nome[tamanho];
@@ -38,7 +40,7 @@ int ex1(){
 
 #include <stdio.h>
 
-int main(){
+int ex3(){
     int i;
 
     int vetor[10];
@@ -52,7 +54,7 @@ int main(){
         printf("%d\n", vetor[i]);
 
     }
-    
+
     int maior = vetor[0];
     int menor = vetor[0];
 
