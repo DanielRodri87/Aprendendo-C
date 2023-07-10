@@ -48,9 +48,25 @@ int main(){
         scanf("%d", &vetor[i]);
     }
 
-    for(i = 9; i >= 0; i--){
+    for(i = 10; i > 0; i--){
         printf("%d\n", vetor[i]);
+
     }
+    
+    int maior = vetor[0];
+    int menor = vetor[0];
+
+    for (i = 1; i < 10; i++){
+        if (vetor[i] > maior){
+            maior = vetor[i];
+        }
+        if (vetor[i] < menor){
+            menor = vetor[i];
+        }
+    }
+
+    printf("O maior numero digitado foi: %d\n", maior);
+    printf("O menor numero digitado foi: %d\n", menor);
 
     return 0;
 }
