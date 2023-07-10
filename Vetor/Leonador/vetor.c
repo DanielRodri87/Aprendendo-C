@@ -2,7 +2,6 @@
 
 //  É utilizado para armazenar uma lista de valores do mesmo tipo, ou seja, o tipo vetor permite armazena mais de um valor em uma mesma variável.
 
-
 //  Número fixo de células idênticas.
 
 // Cada célula armazena um e somente um dos valores de dados do vetor
@@ -73,4 +72,9 @@ int ex3(){
     return 0;
 }
 
-
+int main(){
+    // ex1(); 
+    // ex2();
+    ex3();
+    return 0;
+}
