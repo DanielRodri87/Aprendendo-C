@@ -33,39 +33,38 @@ int ex2()
     return 0;
 }
 
+
+// -------------------------------------------   PRATICA ---------------------------------------------------
 int main()
 {
-    // Vetor de nomes = 5
-    // Matriz de notas = 3 + 1 média
-    // Quero saber o nome de quem foi aprovado e a média
 
-    char nomes[5][100];
-    float notas[5][3], media;
-    int l, c;
+    char nomes[5][100]; // --> Vetor de nomes = 5 podendo cada nome ter até 100 caracteres
+    float notas[5][3], media; // --> Matriz de notas = 3 + 1 média; media = Vai receber o valor dela lá embaixo
+    int l, c; // Linhas e colunas do meu vetor
 
     for (l=0; l<5; l++)
     {
         printf("Digite o nome do %d aluno: ", l+1);
-        gets(nomes[l]);
+        gets(nomes[l]); // --> Recebe o nome do aluno e jogo no índice a partir do for: 1° Execução nome[0], 2° Execução nome[1] ... , 5° Execução nome[4]
         for (c = 0; c<3; c++)
         {
-            printf("Digite a %d nota do %d aluno: ", c+1, l+1);
-            scanf("%f", &notas[l][c]);
+            printf("Digite a %d nota do %d aluno: ", c+1, l+1); // --> c+1 = 1° nota, c+2 = 2° nota, c+3 = 3° nota, l+1 = 1° aluno, l+2 = 2° aluno, l+3 = 3° aluno, l+4 = 4° aluno, l+5 = 5° aluno
+            scanf("%f", &notas[l][c]); // --> Recebe a nota do aluno e jogo no índice a partir do for: 1° Execução notas[0][0], 2° Execução notas[0][1], 3° Execução notas[0][2], 4° Execução notas[1][0], 5° Execução notas[1][1], 6° Execução notas[1][2], 7° Execução notas[2][0], 8° Execução notas[2][1], 9° Execução notas[2][2], 10° Execução notas[3][0], 11° Execução notas[3][1], 12° Execução notas[3][2], 13° Execução notas[4][0], 14° Execução notas[4][1], 15° Execução notas[4][2]
         }
-        getchar();
+        getchar(); // Esse getchar usei porque estava enfrentando um bug que não deixava eu digitar o nome do aluno, então ele dá uma pausa e espera o usuário digitar o nome do aluno
     }
 
-    for (l = 0; l <5; l++)
+    for (l = 0; l <5; l++) // Laço responsável por ler a matriz e calcular a média
     {
-        media = 0;
-        for(c = 0; c < 3; c++)
+        media = 0; // Toda vez que entro no for a média é zerada para cada aluno
+        for(c = 0; c < 3; c++) // Laço responsável por ler as notas de cada aluno
         {
-            media += notas[l][c];
+            media += notas[l][c]; // media = media + notas[l][c]: 
         }
-        media /= 3;
+        media /= 3; // media = media / 3:
         if (media >= 7)
         {
-            printf("O aluno %s foi aprovado com media %.2f\n", nomes[l], media);
+            printf("O aluno %s foi aprovado com media %.2f\n", nomes[l], media); // --> nomes[l] = nome do aluno a partir do índice do vetor, media = média do aluno
         }
     }
 
