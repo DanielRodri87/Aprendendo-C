@@ -34,8 +34,10 @@ int ex2()
 }
 
 
-// -------------------------------------------   PRATICA ---------------------------------------------------
-int main()
+// -------------------------------------------   PRATICAS ---------------------------------------------------
+
+// Sem menu
+int pratica1()
 {
 
     char nomes[5][100]; // --> Vetor de nomes = 5 podendo cada nome ter até 100 caracteres
@@ -68,5 +70,80 @@ int main()
         }
     }
 
+    return 0;
+}
+
+// Com menu não irei comentar, mas segue a mesma premissa do acima, mas com escolha de casos a partir do switch. Meio que dividi em blocos e coloquei em cada caso
+int main()
+{
+    int opcao, l, c;
+    char nomes[5][100];
+    float notas[1][3], media;
+
+    do
+    {
+        printf("1 - Cadastrar alunos\n");
+        printf("2 - Exibir alunos aprovados\n");
+        printf("3 - Exibir alunos\n");
+        printf("4 - Sair\n");
+        printf("Digite a opcao: ");
+        scanf("%d", &opcao);
+        getchar();
+
+        switch (opcao)
+        {
+        case 1:
+            for (l=0; l<1; l++)
+            {
+                printf("Digite o nome do %d aluno: ", l+1);
+                gets(nomes[l]);
+                for (c = 0; c<3; c++)
+                {
+                    printf("Digite a %d nota do %d aluno: ", c+1, l+1);
+                    scanf("%f", &notas[l][c]);
+                }
+                getchar();
+            }
+            break;
+
+        case 2:
+            printf("Listar nomes dos alunos aprovados\n");
+            for (l = 0; l <5; l++)
+            {
+                media = 0;
+                for(c = 0; c < 3; c++)
+                {
+                    media += notas[l][c];
+                }
+                media /= 3;
+                if (media >= 7)
+                {
+                    printf("O aluno %s foi aprovado com media %.2f\n", nomes[l], media);
+                }
+            }
+            break;
+        case 3:
+            printf("Listar nomes dos alunos\n");
+            for (l = 0; l <5; l++)
+            {
+                media = 0;
+                for(c = 0; c < 3; c++)
+                {
+                    media += notas[l][c];
+                }
+                media /= 3;
+                printf("O aluno %s teve media %.2f\n", nomes[l], media);
+            }
+            break;
+
+        case 4:
+            printf("Saindo do programa...\n");
+            break;
+        default:
+            printf("Opcao invalida\n");
+            break;
+        }
+    } while (opcao != 4);
+    
     return 0;
 }
