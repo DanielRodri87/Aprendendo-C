@@ -109,6 +109,7 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 
     char modelo[50];
+    
     printf("Digite o modelo do notebook: ");
     fflush(stdin);
     gets(modelo);
@@ -261,7 +262,7 @@ int main()
         printf("===================================== ---- =====================================\n");
         printf("================================== -- MENU -- ==================================\n");
         printf("============================== -- DANITECNOLOGY -- =============================\n");
-        printf("============================== ------------------- =============================\n");
+        printf("============================= --------------------- =============================\n");
         printf("================================================================================\n");
 
         printf("\n\n");
@@ -277,7 +278,7 @@ int main()
         printf("9 - Sair\n");
         printf("\n\n");
 
-        printf("Digite a opção desejada: ");
+        printf("Digite a opcao desejada: ");
         scanf("%d", &opcao);
 
         // Limpa o buffer de entrada
