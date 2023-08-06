@@ -86,10 +86,12 @@ void pesquisarNotebook(Notebook notebook[], int qtdNotebooks)
     fflush(stdin);
     gets(modelo);
 
+    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
+
     for (int i = 0; i < qtdNotebooks; i++)
     {
-        char *firstWord = strtok(notebook[i].modelo, " ");
-        if (strcmp(firstWord, modelo) == 0)
+        // Verifica se a palavra pesquisada está contida no modelo do notebook
+        if (strstr(notebook[i].modelo, modelo) != NULL)
         {
             printf("Modelo: %s\n", notebook[i].modelo);
             printf("Defeito: %s\n", notebook[i].defeito);
@@ -97,11 +99,18 @@ void pesquisarNotebook(Notebook notebook[], int qtdNotebooks)
             printf("Consertado: %s\n", notebook[i].consertado);
             printf("Valor do conserto: %.2f\n", notebook[i].valorConserto);
             printf("\n\n");
+
+            encontrado = 1; 
         }
+    }
+
+    if (!encontrado)
+    {
+        printf("Notebook nao encontrado!\n");
     }
 }
 
-// Função para atualizar as informações do notebook
+
 void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
 {
     printf("\n\n");
@@ -109,24 +118,25 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 
     char modelo[50];
-    
     printf("Digite o modelo do notebook: ");
     fflush(stdin);
     gets(modelo);
+
+    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
         if (strcmp(notebook[i].modelo, modelo) == 0)
         {
-            printf("Digite o modelo do notebook: ");
-            fflush(stdin);
+            printf("Digite o novo modelo do notebook: ");
+            fflush(stdin); // Limpa o buffer de entrada
             gets(notebook[i].modelo);
 
-            printf("Digite o defeito do notebook: ");
+            printf("Digite o novo defeito do notebook: ");
             fflush(stdin);
             gets(notebook[i].defeito);
 
-            printf("Digite a data de entrada do notebook: ");
+            printf("Digite a nova data de entrada do notebook: ");
             fflush(stdin);
             gets(notebook[i].dataEntrada);
 
@@ -134,13 +144,18 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
             fflush(stdin);
             gets(notebook[i].consertado);
 
-            printf("Digite o valor do conserto do notebook: ");
+            printf("Digite o novo valor do conserto do notebook: ");
             scanf("%f", &notebook[i].valorConserto);
+
+            encontrado = 1; // Marca que o notebook foi encontrado
             return;
         }
     }
 
-    printf("Notebook não encontrado!\n");
+    if (!encontrado)
+    {
+        printf("Notebook não encontrado!\n");
+    }
 }
 
 // Função para excluir um notebook
@@ -155,6 +170,8 @@ void excluirNotebook(Notebook notebook[], int *qtdNotebooks)
     fflush(stdin);
     gets(modelo);
 
+    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
+
     for (int i = 0; i < *qtdNotebooks; i++)
     {
         if (strcmp(notebook[i].modelo, modelo) == 0)
@@ -164,12 +181,16 @@ void excluirNotebook(Notebook notebook[], int *qtdNotebooks)
                 notebook[j] = notebook[j + 1];
             }
             (*qtdNotebooks)--;
+            encontrado = 1; // Marca que o notebook foi encontrado
             printf("Notebook excluído com sucesso!\n");
             return;
         }
     }
 
-    printf("Notebook não encontrado!\n");
+    if (!encontrado)
+    {
+        printf("Notebook não encontrado!\n");
+    }
 }
 
 // Função para listar os notebooks que ainda não foram consertados
@@ -281,9 +302,7 @@ int main()
         printf("Digite a opcao desejada: ");
         scanf("%d", &opcao);
 
-        // Limpa o buffer de entrada
-        while (getchar() != '\n')
-            ;
+        while (getchar() != '\n'); 
 
         // Verifica se a opção é válida
         if (opcao < 1 || opcao > 9)
