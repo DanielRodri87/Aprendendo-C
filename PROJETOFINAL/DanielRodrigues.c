@@ -47,6 +47,7 @@ void cadastrarNotebook(Notebook notebook[], int *qtdNotebooks)
     scanf("%f", &notebook[*qtdNotebooks].valorConserto);
 
     (*qtdNotebooks)++;
+    system("pause");
 }
 
 // Função para listar os notebooks
@@ -71,6 +72,7 @@ void listarNotebooks(Notebook notebook[], int qtdNotebooks)
         printf("Valor do conserto: %.2f\n", notebook[i].valorConserto);
         printf("\n\n");
     }
+    system("pause");
 }
 
 // Função para pesquisar um notebook pelo primeiro nome do modelo
@@ -108,6 +110,7 @@ void pesquisarNotebook(Notebook notebook[], int qtdNotebooks)
     {
         printf("Notebook nao encontrado!\n");
     }
+    system("pause");
 }
 
 
@@ -156,6 +159,7 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     {
         printf("Notebook nao encontrado!\n");
     }
+    system("pause");
 }
 
 
@@ -185,7 +189,9 @@ void listarNotebooksNaoConsertados(Notebook notebook[], int qtdNotebooks)
     if (encontrados == 0)
     {
         printf("Nenhum notebook nao consertado encontrado!\n");
+
     }
+    system("pause");
 }
 
 // Função para listar os notebooks que já foram consertados
@@ -213,7 +219,9 @@ void listarNotebooksConsertados(Notebook notebook[], int qtdNotebooks)
     if (encontrados == 0)
     {
         printf("Nenhum notebook consertado encontrado!\n");
+
     }
+    system("pause");
 }
 
 // Função para gerar um relatório
@@ -231,6 +239,7 @@ void gerarRelatorio(Notebook notebook[], int qtdNotebooks)
     }
 
     printf("Valor total dos consertos: %.2f\n", valorTotal);
+    system("pause");
     printf("\n\n");
 }
 
@@ -252,10 +261,11 @@ void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
     {
         if (strstr(notebook[i].modelo, modelo) != NULL)
         {
+            printf("Status Atual: %s\n", notebook[i].consertado);
+            system("pause");
             printf("Digite se o notebook foi consertado ou nao: ");
             fflush(stdin);
             gets(notebook[i].consertado);
-
             encontrado = 1; 
             return;
         }
@@ -265,6 +275,7 @@ void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
     {
         printf("Notebook nao encontrado!\n");
     }
+    system("pause");
 }
 
 
@@ -276,6 +287,7 @@ int main()
 
     do
     {
+        system("cls");
         printf("\n\n");
         printf("================================================================================\n");
         printf("===================================== ---- =====================================\n");
@@ -298,6 +310,7 @@ int main()
         printf("\n\n");
 
         printf("Digite a opcao desejada: ");
+        fflush(stdin);
 
         char buffer[100];
         if (fgets(buffer, sizeof(buffer), stdin) == NULL)
@@ -306,12 +319,14 @@ int main()
             continue;
         }
 
+        // Remover a quebra de linha do buffer de entrada
+        buffer[strcspn(buffer, "\n")] = '\0';
+
         if (sscanf(buffer, "%d", &opcao) != 1)
         {
             printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
             continue;
         }
-
         // Verifica se a opcao é válida
         if (opcao < 1 || opcao > 9)
         {
