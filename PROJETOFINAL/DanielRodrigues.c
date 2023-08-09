@@ -14,6 +14,7 @@ typedef struct
     float valorConserto;
 } Notebook;
 
+
 void cadastrarNotebook(Notebook notebook[], int *qtdNotebooks)
 {
     printf("\n\n");
@@ -167,8 +168,6 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     }
     system("pause");
 }
-
-
 
 // Função para listar os notebooks que ainda nao foram consertados
 void listarNotebooksNaoConsertados(Notebook notebook[], int qtdNotebooks)
