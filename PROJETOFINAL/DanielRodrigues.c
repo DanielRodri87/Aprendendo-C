@@ -39,7 +39,7 @@ void cadastrarNotebook(Notebook notebook[], int *qtdNotebooks)
     fflush(stdin);
     gets(notebook[*qtdNotebooks].dataEntrada);
 
-    printf("Digite se o notebook foi consertado (Sim/Não): ");
+    printf("Digite se o notebook foi consertado (Sim/Nao): ");
     fflush(stdin);
     gets(notebook[*qtdNotebooks].consertado);
 
@@ -104,7 +104,7 @@ void pesquisarNotebook(Notebook notebook[], int qtdNotebooks)
         }
     }
 
-    if (!encontrado)
+    if (encontrado == 0)
     {
         printf("Notebook nao encontrado!\n");
     }
@@ -118,7 +118,7 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 
     char modelo[50];
-    printf("Digite o modelo do notebook: ");
+    printf("Digite o modelo  do notebook: ");
     fflush(stdin);
     gets(modelo);
 
@@ -140,60 +140,27 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
             fflush(stdin);
             gets(notebook[i].dataEntrada);
 
-            printf("Digite se o notebook foi consertado ou não: ");
+            printf("Digite se o notebook foi consertado ou nao: ");
             fflush(stdin);
             gets(notebook[i].consertado);
 
             printf("Digite o novo valor do conserto do notebook: ");
             scanf("%f", &notebook[i].valorConserto);
 
-            encontrado = 1; // Marca que o notebook foi encontrado
+            encontrado = 1; 
             return;
         }
     }
 
-    if (!encontrado)
+    if (encontrado == 0)
     {
-        printf("Notebook não encontrado!\n");
+        printf("Notebook nao encontrado!\n");
     }
 }
 
-// Função para excluir um notebook
-void excluirNotebook(Notebook notebook[], int *qtdNotebooks)
-{
-    printf("\n\n");
-    printf("================================== -- EXCLUIR NOTEBOOK -- ==================================");
-    printf("\n\n");
 
-    char modelo[50];
-    printf("Digite o modelo do notebook: ");
-    fflush(stdin);
-    gets(modelo);
 
-    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
-
-    for (int i = 0; i < *qtdNotebooks; i++)
-    {
-        if (strcmp(notebook[i].modelo, modelo) == 0)
-        {
-            for (int j = i; j < (*qtdNotebooks - 1); j++)
-            {
-                notebook[j] = notebook[j + 1];
-            }
-            (*qtdNotebooks)--;
-            encontrado = 1; // Marca que o notebook foi encontrado
-            printf("Notebook excluído com sucesso!\n");
-            return;
-        }
-    }
-
-    if (!encontrado)
-    {
-        printf("Notebook não encontrado!\n");
-    }
-}
-
-// Função para listar os notebooks que ainda não foram consertados
+// Função para listar os notebooks que ainda nao foram consertados
 void listarNotebooksNaoConsertados(Notebook notebook[], int qtdNotebooks)
 {
     printf("\n\n");
@@ -203,7 +170,7 @@ void listarNotebooksNaoConsertados(Notebook notebook[], int qtdNotebooks)
     int encontrados = 0;
     for (int i = 0; i < qtdNotebooks; i++)
     {
-        if (strcmp(notebook[i].consertado, "Não") == 0)
+        if (strcmp(notebook[i].consertado, "Nao") == 0)
         {
             printf("Modelo: %s\n", notebook[i].modelo);
             printf("Defeito: %s\n", notebook[i].defeito);
@@ -217,11 +184,10 @@ void listarNotebooksNaoConsertados(Notebook notebook[], int qtdNotebooks)
 
     if (encontrados == 0)
     {
-        printf("Nenhum notebook não consertado encontrado!\n");
+        printf("Nenhum notebook nao consertado encontrado!\n");
     }
 }
 
-// Função para listar os notebooks que já foram consertados
 // Função para listar os notebooks que já foram consertados
 void listarNotebooksConsertados(Notebook notebook[], int qtdNotebooks)
 {
@@ -254,7 +220,7 @@ void listarNotebooksConsertados(Notebook notebook[], int qtdNotebooks)
 void gerarRelatorio(Notebook notebook[], int qtdNotebooks)
 {
     printf("\n\n");
-    printf("================================== -- GERAR RELAToRIO -- ==================================");
+    printf("================================== -- GERAR RELATORIO -- ==================================");
     printf("\n\n");
 
     float valorTotal = 0;
@@ -270,8 +236,6 @@ void gerarRelatorio(Notebook notebook[], int qtdNotebooks)
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
-
     Notebook notebook[TAM];
     int qtdNotebooks = 0;
     int opcao;
@@ -283,7 +247,7 @@ int main()
         printf("===================================== ---- =====================================\n");
         printf("================================== -- MENU -- ==================================\n");
         printf("============================== -- DANITECNOLOGY -- =============================\n");
-        printf("============================= --------------------- =============================\n");
+        printf("============================= --------------------- ============================\n");
         printf("================================================================================\n");
 
         printf("\n\n");
@@ -292,22 +256,31 @@ int main()
         printf("2 - Listar notebooks\n");
         printf("3 - Pesquisar notebook\n");
         printf("4 - Atualizar notebook\n");
-        printf("5 - Excluir notebook\n");
-        printf("6 - Listar notebooks nao consertados\n");
-        printf("7 - Listar notebooks consertados\n");
-        printf("8 - Gerar relatorio\n");
-        printf("9 - Sair\n");
+        printf("5 - Listar notebooks nao consertados\n");
+        printf("6 - Listar notebooks consertados\n");
+        printf("7 - Gerar relatorio\n");
+        printf("8 - Sair\n");
         printf("\n\n");
 
         printf("Digite a opcao desejada: ");
-        scanf("%d", &opcao);
 
-        while (getchar() != '\n'); 
+        char buffer[100];
+        if (fgets(buffer, sizeof(buffer), stdin) == NULL)
+        {
+            printf("Erro na leitura da opcao.\n");
+            continue;
+        }
 
-        // Verifica se a opção é válida
+        if (sscanf(buffer, "%d", &opcao) != 1)
+        {
+            printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
+            continue;
+        }
+
+        // Verifica se a opcao é válida
         if (opcao < 1 || opcao > 9)
         {
-            printf("Opção inválida! Digite um número entre 1 e 9.\n");
+            printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
             continue;
         }
 
@@ -326,25 +299,22 @@ int main()
             atualizarNotebook(notebook, qtdNotebooks);
             break;
         case 5:
-            excluirNotebook(notebook, &qtdNotebooks);
-            break;
-        case 6:
             listarNotebooksNaoConsertados(notebook, qtdNotebooks);
             break;
-        case 7:
+        case 6:
             listarNotebooksConsertados(notebook, qtdNotebooks);
             break;
-        case 8:
+        case 7:
             gerarRelatorio(notebook, qtdNotebooks);
             break;
-        case 9:
+        case 8:
             printf("Saindo do programa...\n");
             break;
         default:
-            printf("Opção invalida!\n");
+            printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
             break;
         }
-    } while (opcao != 9);
+    } while (opcao != 8);
 
     return 0;
 }
