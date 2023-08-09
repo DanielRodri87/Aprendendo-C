@@ -88,7 +88,7 @@ void pesquisarNotebook(Notebook notebook[], int qtdNotebooks)
     fflush(stdin);
     gets(modelo);
 
-    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
+    int encontrado = 0; 
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
@@ -255,7 +255,7 @@ void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
     fflush(stdin);
     gets(modelo);
 
-    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
+    int encontrado = 0; 
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
