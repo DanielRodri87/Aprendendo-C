@@ -126,7 +126,7 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
-        if (strcmp(notebook[i].modelo, modelo) == 0)
+        if (strstr(notebook[i].modelo, modelo) != NULL)
         {
             printf("Digite o novo modelo do notebook: ");
             fflush(stdin); // Limpa o buffer de entrada
@@ -234,6 +234,40 @@ void gerarRelatorio(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 }
 
+// Função que atualizar apenas o status de conserto
+void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
+{
+    printf("\n\n");
+    printf("================================== -- ATUALIZAR STATUS DE CONSERTO -- ==================================");
+    printf("\n\n");
+
+    char modelo[50];
+    printf("Digite o modelo do notebook: ");
+    fflush(stdin);
+    gets(modelo);
+
+    int encontrado = 0; // Variável para indicar se o notebook foi encontrado
+
+    for (int i = 0; i < qtdNotebooks; i++)
+    {
+        if (strstr(notebook[i].modelo, modelo) != NULL)
+        {
+            printf("Digite se o notebook foi consertado ou nao: ");
+            fflush(stdin);
+            gets(notebook[i].consertado);
+
+            encontrado = 1; 
+            return;
+        }
+    }
+
+    if (encontrado == 0)
+    {
+        printf("Notebook nao encontrado!\n");
+    }
+}
+
+
 int main()
 {
     Notebook notebook[TAM];
@@ -259,7 +293,8 @@ int main()
         printf("5 - Listar notebooks nao consertados\n");
         printf("6 - Listar notebooks consertados\n");
         printf("7 - Gerar relatorio\n");
-        printf("8 - Sair\n");
+        printf("8 - Atualizar Status de Conserto\n");
+        printf("9 - Sair\n");
         printf("\n\n");
 
         printf("Digite a opcao desejada: ");
@@ -308,13 +343,16 @@ int main()
             gerarRelatorio(notebook, qtdNotebooks);
             break;
         case 8:
+            atualizarStatusConserto(notebook, qtdNotebooks);
+            break;
+        case 9:
             printf("Saindo do programa...\n");
             break;
         default:
             printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
             break;
         }
-    } while (opcao != 8);
+    } while (opcao != 9);
 
     return 0;
 }
