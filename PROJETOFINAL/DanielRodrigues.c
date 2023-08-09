@@ -121,32 +121,38 @@ void atualizarNotebook(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 
     char modelo[50];
-    printf("Digite o modelo  do notebook: ");
+    printf("Digite o modelo (exatamente igual) do notebook: ");
     fflush(stdin);
     gets(modelo);
+
 
     int encontrado = 0; // Variável para indicar se o notebook foi encontrado
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
-        if (strstr(notebook[i].modelo, modelo) != NULL)
+        if (strcmp(notebook[i].modelo, modelo) == 0)
         {
+            printf("Valor anterior: %s\n", notebook[i].modelo);
             printf("Digite o novo modelo do notebook: ");
-            fflush(stdin); // Limpa o buffer de entrada
+            fflush(stdin);
             gets(notebook[i].modelo);
 
+            printf("Valor anterior: %s\n", notebook[i].defeito);
             printf("Digite o novo defeito do notebook: ");
             fflush(stdin);
             gets(notebook[i].defeito);
 
+            printf("Valor anterior: %s\n", notebook[i].dataEntrada);
             printf("Digite a nova data de entrada do notebook: ");
             fflush(stdin);
             gets(notebook[i].dataEntrada);
 
-            printf("Digite se o notebook foi consertado ou nao: ");
+            printf("Valor anterior: %s\n", notebook[i].consertado);
+            printf("Digite se o notebook foi consertado (Sim/Nao): ");
             fflush(stdin);
             gets(notebook[i].consertado);
-
+        
+            printf("Valor anterior: %.2f\n", notebook[i].valorConserto);
             printf("Digite o novo valor do conserto do notebook: ");
             scanf("%f", &notebook[i].valorConserto);
 
@@ -251,7 +257,7 @@ void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
     printf("\n\n");
 
     char modelo[50];
-    printf("Digite o modelo do notebook: ");
+    printf("Digite o modelo (exatamente igual) do notebook: ");
     fflush(stdin);
     gets(modelo);
 
@@ -259,11 +265,11 @@ void atualizarStatusConserto(Notebook notebook[], int qtdNotebooks)
 
     for (int i = 0; i < qtdNotebooks; i++)
     {
-        if (strstr(notebook[i].modelo, modelo) != NULL)
+        if (strcmp(notebook[i].modelo, modelo) == 0)
         {
             printf("Status Atual: %s\n", notebook[i].consertado);
             system("pause");
-            printf("Digite se o notebook foi consertado ou nao: ");
+            printf("Digite se o notebook foi consertado ou nao (Sim/Nao): ");
             fflush(stdin);
             gets(notebook[i].consertado);
             encontrado = 1; 
@@ -304,7 +310,7 @@ int main()
         printf("4 - Atualizar notebook\n");
         printf("5 - Listar notebooks nao consertados\n");
         printf("6 - Listar notebooks consertados\n");
-        printf("7 - Gerar relatorio\n");
+        printf("7 - Gerar relatorio de lucros\n");
         printf("8 - Atualizar Status de Conserto\n");
         printf("9 - Sair\n");
         printf("\n\n");
@@ -322,7 +328,7 @@ int main()
         // Remover a quebra de linha do buffer de entrada
         buffer[strcspn(buffer, "\n")] = '\0';
 
-        if (sscanf(buffer, "%d", &opcao) != 1)
+        if (sscanf(buffer, "%d", &opcao) != 1) 
         {
             printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
             continue;
