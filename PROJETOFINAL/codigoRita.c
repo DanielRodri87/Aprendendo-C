@@ -4,7 +4,7 @@
 #define MAX_PRODUCTS 100
 
 struct Produto {
-    char nome[50];
+    int codigo;
     char tipo[20];
     float preco;
     int quantidade;
@@ -17,17 +17,21 @@ void inserirProduto() {
     if (numProdutos < MAX_PRODUCTS) {
         struct Produto novoProduto;
 
-        printf("Nome do produto: ");
-        scanf("%s", novoProduto.nome);
+        printf("Código do produto: ");
+        scanf("%d", &novoProduto.codigo);
+        fflush(stdin);
 
         printf("Tipo do produto (Camisa, Caneca, Almofada, Chaveiro): ");
         scanf("%s", novoProduto.tipo);
+        fflush(stdin);
 
         printf("Preço do produto: ");
         scanf("%f", &novoProduto.preco);
+        fflush(stdin);
 
         printf("Quantidade do produto: ");
         scanf("%d", &novoProduto.quantidade);
+        fflush(stdin);
 
         produtos[numProdutos++] = novoProduto;
     } else {
@@ -38,7 +42,7 @@ void inserirProduto() {
 void mostrarProdutos() {
     printf("\n=== Produtos Cadastrados ===\n");
     for (int i = 0; i < numProdutos; i++) {
-        printf("Nome: %s\n", produtos[i].nome);
+        printf("Código: %d\n", produtos[i].codigo);
         printf("Tipo: %s\n", produtos[i].tipo);
         printf("Preço: %.2f\n", produtos[i].preco);
         printf("Quantidade: %d\n\n", produtos[i].quantidade);
@@ -49,11 +53,12 @@ void gerarRelatorioPorPalavraChave() {
     char keyword[50];
     printf("Digite a palavra-chave: ");
     scanf("%s", keyword);
+    fflush(stdin);
 
     printf("\n=== Relatório por Palavra-Chave ===\n");
     for (int i = 0; i < numProdutos; i++) {
-        if (strstr(produtos[i].nome, keyword) || strstr(produtos[i].tipo, keyword)) {
-            printf("Nome: %s\n", produtos[i].nome);
+        if (strstr(produtos[i].tipo, keyword) || strstr(produtos[i].tipo, keyword)) {
+            printf("Código: %d\n", produtos[i].codigo);
             printf("Tipo: %s\n", produtos[i].tipo);
             printf("Preço: %.2f\n", produtos[i].preco);
             printf("Quantidade: %d\n\n", produtos[i].quantidade);
@@ -62,15 +67,17 @@ void gerarRelatorioPorPalavraChave() {
 }
 
 void atualizarQuantidadeProduto() {
-    char nomeProduto[50];
-    printf("Digite o nome do produto para atualizar a quantidade: ");
-    scanf("%s", nomeProduto);
+    int codigoProduto;
+    printf("Digite o código do produto para atualizar a quantidade: ");
+    scanf("%d", &codigoProduto);
+    fflush(stdin);
 
     for (int i = 0; i < numProdutos; i++) {
-        if (strcmp(produtos[i].nome, nomeProduto) == 0) {
+        if (produtos[i].codigo == codigoProduto) {
             int novaQuantidade;
             printf("Nova quantidade: ");
             scanf("%d", &novaQuantidade);
+            fflush(stdin);
             produtos[i].quantidade = novaQuantidade;
             printf("Quantidade atualizada com sucesso.\n");
             return;
@@ -93,22 +100,23 @@ void lucrosporproduto() {
     printf("4. Chaveiro\n");
     printf("Escolha um tipo de produto: ");
     scanf("%d", &opcaoLucro);
+    fflush(stdin);
 
     float lucroTipo = 0;
-    const char *tipoProduto;
+    char tipoProduto[20] = "";
 
     switch (opcaoLucro) {
         case 1:
-            tipoProduto = "Camisa";
+            strcpy(tipoProduto, "Camisa");
             break;
         case 2:
-            tipoProduto = "Caneca";
+            strcpy(tipoProduto, "Caneca");
             break;
         case 3:
-            tipoProduto = "Almofada";
+            strcpy(tipoProduto, "Almofada");
             break;
         case 4:
-            tipoProduto = "Chaveiro";
+            strcpy(tipoProduto, "Chaveiro");
             break;
         default:
             printf("Opção inválida.\n");
@@ -124,7 +132,6 @@ void lucrosporproduto() {
     printf("Lucro com %s: %.2f\n", tipoProduto, lucroTipo);
 }
 
-
 int main() {
     int opcao;
 
@@ -135,10 +142,11 @@ int main() {
         printf("3. Pesquisa por palavra-chave\n");
         printf("4. Atualizar quantidade de um produto\n");
         printf("5. Mostrar quantidade de produtos cadastrados\n");
-        printf("6. Mostrar relatorio de lucros por produto\n");
+        printf("6. Mostrar relatório de lucros por produto\n");
         printf("7. Finalizar aplicação\n");
         printf("Escolha uma opção: ");
         scanf("%d", &opcao);
+        fflush(stdin);
 
         switch (opcao) {
             case 1:

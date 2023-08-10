@@ -61,6 +61,7 @@ void listarNotebooks(Notebook notebook[], int qtdNotebooks)
     if (qtdNotebooks == 0)
     {
         printf("Nenhum notebook cadastrado!\n");
+        system("pause");
         return;
     }
 
@@ -321,6 +322,7 @@ int main()
         if (fgets(buffer, sizeof(buffer), stdin) == NULL)
         {
             printf("Erro na leitura da opcao.\n");
+            system("pause");
             continue;
         }
 
@@ -330,12 +332,15 @@ int main()
         if (sscanf(buffer, "%d", &opcao) != 1) 
         {
             printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
+            system("pause");
+
             continue;
         }
         // Verifica se a opcao é válida
         if (opcao < 1 || opcao > 9)
         {
             printf("Opcao Invalida! Digite um numero entre 1 e 9.\n");
+            system("pause");
             continue;
         }
 
