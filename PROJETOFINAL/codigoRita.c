@@ -56,15 +56,21 @@ void gerarRelatorioPorPalavraChave() {
     fflush(stdin);
 
     printf("\n=== Relatório por Palavra-Chave ===\n");
+    int encontrado = 0; 
     for (int i = 0; i < numProdutos; i++) {
-        if (strstr(produtos[i].tipo, keyword) || strstr(produtos[i].tipo, keyword)) {
+        if (strstr(produtos[i].tipo, keyword)) {
             printf("Código: %d\n", produtos[i].codigo);
             printf("Tipo: %s\n", produtos[i].tipo);
             printf("Preço: %.2f\n", produtos[i].preco);
             printf("Quantidade: %d\n\n", produtos[i].quantidade);
+            encontrado = 1; 
         }
     }
+    if (encontrado == 0) {
+        printf("Produto não encontrado.\n"); 
+    }
 }
+
 
 void atualizarQuantidadeProduto() {
     int codigoProduto;
@@ -131,7 +137,6 @@ void lucrosporproduto() {
 
     printf("Lucro com %s: %.2f\n", tipoProduto, lucroTipo);
 }
-
 int main() {
     int opcao;
 
@@ -145,7 +150,10 @@ int main() {
         printf("6. Mostrar relatório de lucros por produto\n");
         printf("7. Finalizar aplicação\n");
         printf("Escolha uma opção: ");
-        scanf("%d", &opcao);
+        while (scanf("%d", &opcao) != 1 || opcao < 1 || opcao > 7) {
+            fflush(stdin);
+            printf("Opção inválida. Escolha novamente: ");
+        }
         fflush(stdin);
 
         switch (opcao) {
@@ -170,8 +178,6 @@ int main() {
             case 7:
                 printf("Aplicação finalizada.\n");
                 break;
-            default:
-                printf("Opção inválida. Tente novamente.\n");
         }
     } while (opcao != 7);
 
