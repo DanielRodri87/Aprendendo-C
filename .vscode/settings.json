@@ -3,6 +3,7 @@
         "*.html": "html",
         "1000.C": "cpp",
         "QUESTAO2.C": "cpp",
-        "questao.C": "cpp"
+        "questao.C": "cpp",
+        "stdio.h": "c"
     }
 }
