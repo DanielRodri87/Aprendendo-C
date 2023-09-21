@@ -5,31 +5,34 @@ int main()
     int altura, comp, i;
 
     do{
-        int laser = 0; // Rapaz, isso só está aqui porque inicializando antes do do-while deu errado
+        int laser = 0; 
 
-        scanf("%d %d", &altura, &comp);// Altura e comprimento
-        int altb[comp];// Altura dos blocos com limite do comprimento
+        scanf("%d %d", &altura, &comp);
+        int altb[comp];
 
-        for(i = 0; i < comp; i++){//Leitura das alturas dos blocos enquanto for menor que o comprimento
-            scanf("%d", &altb[i]);//Armazena no vetor
+        if(altura == 0 && comp == 0){
+            break;
         }
 
-        for(i = 0; i < comp; i++){//Hora do laser
-            if(i == 0){//Se for o primeiro bloco
-                if(altb[i] < altura){//Se a altura do bloco for menor que a altura do muro
-                    laser = laser + (altura - altb[i]);//Laser é igual a altura do muro menos a altura do bloco
+        for(i = 0; i < comp; i++){
+            scanf("%d", &altb[i]);
+        }
+
+        for(i = 0; i < comp; i++){
+            if(i == 0){
+                if(altb[i] < altura){
+                    laser = laser + (altura - altb[i]);
                 }
             }
-            else{//Se não for o primeiro bloco
-                if(altb[i] < altb[i - 1]){//Se a altura do bloco for menor que a altura do bloco anterior
-                    laser = laser + (altb[i - 1] - altb[i]);//Laser é igual a altura do bloco anterior menos a altura do bloco
+            else{
+                if(altb[i] < altb[i - 1]){
+                    laser = laser + (altb[i - 1] - altb[i]);
                 }
             }
         }
 
         printf("%d\n", laser);
-        break;
-    }while(altura != 0 && comp != 0);
+    }while(1);
 
     return 0;
 }
