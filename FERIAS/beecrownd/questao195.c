@@ -1,40 +1,33 @@
 #include <stdio.h>
 #include <string.h>
+#define X 'X'
+#define O 'O'
 
-int main()
-{
-    char jogo[3];
-    int coutx = 0, couto = 0, i;
-    scanf("%s", jogo);
-    if (strcmp(jogo[0], "O") == 0)
-    {
-        printf("?\n");
-    } else 
-    {
-        if (strcmp(jogo[0], jogo[1]) != 0 || strcmp(jogo[1], jogo[2]) != 0)
-        {
-            printf("*\n");
-        } else
-        {
-            for (i=0;i<3;i++)
-            {
-                if (strcmp(jogo[i], 'X') == 0)
-                {
-                    coutx++;
-                } else
-                {
-                    couto++;
-                }
-            }
-            if (coutx > couto)
-            {
-                printf("Alice\n");
-            } else
-            {
-                printf("Bob\n");
-            }
-        }
-    }
+int main() {
+  char tab[3];
+  toupper(tab);
+  scanf("%s", tab);
 
+  if (tab[0] != X || tab[1] == O + 'a' - 'A' || tab[2] == O + 'a' - 'A') {
+    printf("?\n");
     return 0;
+  }
+
+  if (tab[0] == tab[1]) {
+    printf("Alice\n");
+    return 0;
+  }
+
+  if (tab[1] == tab[2]) {
+    printf("Bob\n");
+    return 0;
+  }
+
+  if (tab[0] != tab[1] && tab[1] != tab[2] && tab[0] != (X + 'a' - 'A') && tab[1] != (X + 'a' - 'A') && tab[2] != (X + 'a' - 'A')) {
+    printf("*\n");
+    return 0;
+  }
+
+  printf("?\n");
+  return 0;
 }
