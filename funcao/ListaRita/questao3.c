@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define max 5
+#define max 1
 
 struct Aluno
 {
