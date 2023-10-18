@@ -13,7 +13,7 @@ int main()
     struct SI a1[2];
     int op, pessoa;
     float m1nota = 0;
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 2; i++)
     {
         printf("Digite o nome do %d Aluno: ", i+1);
         scanf("%s", a1[i].nome);
@@ -33,14 +33,14 @@ int main()
     switch (op)
     {
     case 1:
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (a1[i].notas[0] > m1nota)
             {
                 pessoa = i;
             }
         }
-        printf("A maior nota da primeira avaliacao eh do aluno %s", a1[pessoa].nome);
+        printf("A maior nota da primeira avaliacao eh do aluno %s", a1[pessoa].notas[0], a1[pessoa].nome);
 
         break;
     // case 2:
