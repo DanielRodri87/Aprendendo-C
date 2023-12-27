@@ -12,8 +12,6 @@ int main(void)
         printf("O ponteiro 2 é maior: %d, valor - %d", pont2, *pont2);
 
     }
-
-
     getchar();
     return 0;
    
